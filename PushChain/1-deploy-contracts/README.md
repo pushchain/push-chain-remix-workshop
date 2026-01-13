@@ -1,59 +1,75 @@
-Push Chain is a True Universal Layer 1 that is 100% EVM-compatible. **That means you can deploy your existing Solidity contracts to Push Chain with zero on-chain code changes: same Solidity, same ABI, same bytecode. Simply switch your deployment network to Push Chain and deploy as you would on any other EVM.**
+Push Chain is a True Universal Layer 1 that is 100% EVM-compatible. In practice, deploying to Push Chain looks just like deploying to any other EVM chain: you write a normal Solidity contract, compile it, and choose Push Chain as the target network.
 
-Learn more in the official docs: <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/" target="_blank">Intro to Push Chain</a>.
+In this chapter you will:
 
-## Why deploy on Push Chain?
+- **Add Push Chain Donut Testnet to your wallet (MetaMask)**
+- **Deploy a simple Solidity contract from Remix to Push Chain**
+- **Confirm the deployment on the Push Chain block explorer**
 
-- **Zero code changes (EVM compatible)**: Push Chain is fully EVM-compatible, so you don’t need to modify your contracts to deploy on it.
-- **Instant multi-chain users, no bridges**: By deploying on Push Chain, you instantly reach users from all chains that Push Chain is connected to—without changing your on-chain code. Users can interact from Ethereum, Base, Arbitrum, Optimism, Solana, and other supported chains.
-- **Universal wallet and fee abstraction**: Users can connect with popular wallets (MetaMask, Phantom, etc.) and even pay fees in their native token. No need for users to hold a special gas token.
-- **Origin-aware transactions (True Universal L1)**: Push Chain natively links each transaction to its origin chain and originating address, so your contracts and apps can know where a call came from.
+Learn more background concepts in the official docs: <a href="https://push.org/docs/chain/" target="_blank">Intro to Push Chain</a>.
 
-## How origin awareness works
+## Step 1: Add Push Chain Donut Testnet to MetaMask
 
-Because Push Chain is a True Universal L1, transactions maintain their origin metadata:
+1. Open MetaMask and click the network selector.
+2. Click **Add network** (or **Add network manually**).
+3. Fill in the following values:
+   - **Network Name**: `Push Chain Donut Testnet`
+   - **RPC URL**: `https://evm.donut.rpc.push.org/`
+   - **Chain ID**: `42101`
+   - **Currency Symbol**: `PC`
+   - **Block Explorer URL**: `https://donut.push.network`
+4. Save the network and switch MetaMask to **Push Chain Donut Testnet**.
+5. Visit the faucet to get test PC for gas: <a href="https://faucet.push.org/" target="_blank">Push Chain Faucet</a>.
 
-- Origin chain namespace and chain ID
-- Origin account/address on that chain
+> **Note:** You do **not** need to change your Solidity code to deploy on Push Chain. Any contract that compiles for a standard EVM chain will compile and deploy the same way here.
 
-You can access this in two ways:
+## Step 2: Write a simple contract in Remix
 
-1. From Solidity using contract helpers
+1. Go to <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a>.
+2. Create a new file named `HelloPush.sol` in your workspace.
+3. Paste this minimal Solidity contract:
 
-- See the next section `Universal Account Discovery with Solidity` for how to use the on-chain UEA Factory interface to discover the origin of the caller from Solidity.
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.22;
 
-2. From JavaScript using client helpers
+contract HelloPush {
+    uint256 public value;
 
-- See the section `JavaScript UEAFactory Helper Scripts` for scripts that resolve origin <-> UEA mappings from JavaScript.
+    function set(uint256 _value) external {
+        value = _value;
+    }
+}
+```
 
-These helpers let your dApp attribute actions to the correct origin chain and address.
+4. In the **Solidity compiler** tab, choose compiler version **0.8.22** (or any compatible 0.8.x version) and click **Compile HelloPush.sol**.
 
-## Deploying to Push Chain
+## Step 3: Deploy to Push Chain from Remix
 
-Push Chain behaves like any other EVM for deployment. Typical flows work out of the box. Just configure Push Chain RPC and chain info, and deploy.
+1. Open the **Deploy & Run Transactions** tab in Remix.
+2. Set **Environment** to **Injected Provider - MetaMask**. Remix will connect to the network currently selected in MetaMask.
+3. Confirm that MetaMask is on **Push Chain Donut Testnet**.
+4. Select the `HelloPush` contract in the **Contract** dropdown.
+5. Click **Deploy** and confirm the transaction in MetaMask.
+6. After the transaction is mined, Remix will show the deployed contract instance under **Deployed Contracts**.
+7. Copy the contract address and open it in the explorer:
 
-1. Configure your tool with Push Chain RPC
-   - Add Push Chain network to your deployment config (RPC URL, chain ID, currency symbol, etc.).
-2. Compile your contracts as usual
-   - No Solidity changes are required.
-3. Switch network to Push Chain
-   - In your wallet or in your tool’s network config, select Push Chain.
-4. Deploy
-   - Use your standard deploy command.
+   - `https://donut.push.network/address/YOUR_CONTRACT_ADDRESS`
 
-For step-by-step guides across Remix, Hardhat, and Foundry, see: <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/setup/smart-contract-environment/" target="_blank">Smart Contract Environment</a>.
+You’ve now deployed a standard Solidity contract to Push Chain Donut Testnet with **no on-chain code changes**.
 
-That’s it—your contract is live on Push Chain and immediately accessible to users coming from other supported chains.
+## Push Chain Donut Testnet configuration (reference)
 
-## Push Chain Donut Testnet configuration
+Use the following network details when deploying to Push Chain Donut Testnet. See the full specs in the docs: <a href="https://push.org/docs/chain/setup/chain-config/" target="_blank">Chain Configuration</a>.
 
-Use the following network details when deploying to Push Chain Donut Testnet. See full specs in the docs: <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/setup/chain-config/" target="_blank">Chain Configuration</a>.
+- **Network Name**: Push Chain Donut Testnet
+- **RPC URL**: `https://evm.donut.rpc.push.org/`
+- **Chain ID**: `42101`
+- **Currency Symbol**: `PC`
+- **Block Explorer**: `https://donut.push.network`
+- **Faucet**: `https://faucet.push.org/`
 
-- Network Name: Push Chain Donut Testnet
-- RPC URLs:
-  - `https://evm.rpc-testnet-donut-node1.push.org/`
-  - `https://evm.rpc-testnet-donut-node2.push.org/`
-- Chain ID: 42101
-- Currency Symbol: PC
-- Block Explorer: `https://donut.push.network`
-- Faucet: `https://faucet.push.org/`
+If you prefer deploying with Hardhat or Foundry instead of Remix, follow the official guides:
+
+- **Configure Hardhat**: <a href="https://push.org/docs/chain/setup/smart-contract-environment/configure-hardhat/" target="_blank">Push Chain Docs — Configure Hardhat</a>
+- **Configure Foundry**: <a href="https://push.org/docs/chain/setup/smart-contract-environment/configure-foundry/" target="_blank">Push Chain Docs — Configure Foundry</a>
