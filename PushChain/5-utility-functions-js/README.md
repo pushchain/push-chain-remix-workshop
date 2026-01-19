@@ -22,5 +22,5 @@ This script now uses high-level SDK utilities instead of calling the on-chain fa
 
 ## References
 
-- Docs: <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/build/utility-functions/#convert-executor-address-to-origin-account" target="_blank">Utility Functions → Convert Executor Address to Origin Account</a>
-- Docs: <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/build/utility-functions/#convert-origin-to-executor-account" target="_blank">Utility Functions → Convert Origin to Executor Account</a>
+- Docs: <a href="https://push.org/docs/chain/build/utility-functions/#convert-executor-address-to-origin-account" target="_blank">Utility Functions → Convert Executor Address to Origin Account</a>
+- Docs: <a href="https://push.org/docs/chain/build/utility-functions/#convert-origin-to-executor-account" target="_blank">Utility Functions → Convert Origin to Executor Account</a>

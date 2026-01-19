@@ -60,6 +60,6 @@ This transaction showcases calling `increment()` on the Simple Counter deployed 
 
 ## References
 
-- <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/tutorials/tutorial-simple-counter/" target="_blank">Official Simple Counter Tutorial</a>
-- <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/build/send-universal-transaction/" target="_blank">PushChain Documentation - Send Universal Transaction</a>
+- <a href="https://push.org/docs/chain/tutorials/basics/tutorial-simple-counter/" target="_blank">Official Simple Counter Tutorial</a>
+- <a href="https://push.org/docs/chain/build/send-universal-transaction/" target="_blank">PushChain Documentation - Send Universal Transaction</a>
 - <a href="https://www.npmjs.com/package/@pushchain/core" target="_blank">PushChain Core SDK</a>

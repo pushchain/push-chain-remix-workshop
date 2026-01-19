@@ -9,7 +9,7 @@ In this chapter you will learn the minimum theory you need before writing code:
 If you want to go deeper later, keep these doc links handy:
 
 - <a href="https://push.org/docs/chain/" target="_blank">Intro to Push Chain</a>
-- <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/important-concepts/" target="_blank">Important Concepts</a>
+- <a href="https://push.org/docs/chain/important-concepts/" target="_blank">Important Concepts</a>
 
 ## Account types (high level)
 
@@ -31,7 +31,7 @@ For this workshop, two universal identity concepts matter:
 
 In other words: **the UOA is who the user is** on their home chain; **the UEA is how that user shows up** on Push Chain.
 
-Learn more in <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/important-concepts/#account-types-on-push-chain" target="_blank">Important Concepts → Account Types on Push Chain</a>.
+Learn more in <a href="https://push.org/docs/chain/important-concepts/#account-types-on-push-chain" target="_blank">Important Concepts → Account Types on Push Chain</a>.
 
 ## Universal transactions (high level)
 
@@ -51,7 +51,7 @@ Universal Transactions comes with many benefits, such as:
 - **No bridging required**: Direct native transactions without wrapping or bridging.
 - **Simplified development**: No need for complex interoperability tooling.
 
-Learn more in <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/build/send-universal-transaction/" target="_blank">Send Universal Transaction</a>.
+Learn more in <a href="https://push.org/docs/chain/build/send-universal-transaction/" target="_blank">Send Universal Transaction</a>.
 
 ## Checkpoint (quick self-check)
 

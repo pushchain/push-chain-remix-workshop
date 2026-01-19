@@ -69,4 +69,4 @@ These ideas are designed to **use universal smart contracts for real product UX*
 - **Create universal signer**: <a href="https://push.org/docs/chain/build/create-universal-signer/" target="_blank">Create Universal Signer</a>
 - **Initialize Push Chain client**: <a href="https://push.org/docs/chain/build/initialize-push-chain-client/" target="_blank">Initialize Push Chain Client</a>
 - **UI Kit (for frontends)**: <a href="https://push.org/docs/chain/ui-kit/integrate-push-universal-wallet/" target="_blank">Integrate Push Universal Wallet</a>
-- **Universal Counter App (full UI tutorial)**: <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/tutorials/basics/tutorial-universal-counter/" target="_blank">Universal Counter App</a>
+- **Universal Counter App (full UI tutorial)**: <a href="https://push.org/docs/chain/tutorials/basics/tutorial-universal-counter/" target="_blank">Universal Counter App</a>
