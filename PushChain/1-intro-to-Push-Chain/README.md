@@ -45,6 +45,12 @@ When you send a universal transaction, the SDK:
 
 You focus on application logic instead of building per‑chain deployments, bridges, and custom routing.
 
+### Why Universal Transactions
+Universal Transactions comes with many benefits, such as: 
+- **Cross-chain compatibility**: Send transactions from any chain (EVM or non-EVM).
+- **No bridging required**: Direct native transactions without wrapping or bridging.
+- **Simplified development**: No need for complex interoperability tooling.
+
 Learn more in <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/build/send-universal-transaction/" target="_blank">Send Universal Transaction</a>.
 
 ## Checkpoint (quick self-check)
