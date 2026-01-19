@@ -7,12 +7,6 @@ Before running the script, make sure you have the following in place:
 - **Funding required**: The generated wallet needs PC tokens to execute transactions.
 - **Get testnet tokens**: Visit <a href="https://faucet.push.org/" target="_blank">Push Chain Faucet</a> to get PC tokens for testing.
 
-## Universal Transaction Benefits
-
-- **Cross-chain compatibility**: Send transactions from any chain (EVM or non-EVM).
-- **No bridging required**: Direct native transactions without wrapping or bridging.
-- **Simplified development**: No need for complex interoperability tooling.
-
 ## What we will do
 
 - **Create a wallet**: Generate a random Ethereum wallet on Sepolia
