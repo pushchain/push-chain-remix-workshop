@@ -10,15 +10,17 @@ tags:
 steps:
   - name: Welcome to Push Chain
     path: 0-welcome
+  - name: Intro to Push Chain
+    path: 1-intro-to-Push-Chain
   - name: Deploy Contracts on Push Chain
-    path: 1-deploy-contracts
+    path: 2-deploy-contracts
   - name: Send Universal Transaction to Simple Counter Contract
-    path: 2-send-universal-transaction
+    path: 3-send-universal-transaction
   - name: Universal Account Discovery with Solidity
-    path: 3-contract-helpers-solidity
+    path: 4-contract-helpers-solidity
   - name: JavaScript Account Conversion Helpers
-    path: 4-utility-functions-js
+    path: 5-utility-functions-js
   - name: Universal Counter Smart Contract
-    path: 6-universal-counter-solidity
+    path: 7-universal-counter-solidity
   - name: Conclusion
-    path: 7-conclusion
+    path: 8-conclusion
