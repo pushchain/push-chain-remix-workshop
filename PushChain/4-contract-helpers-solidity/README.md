@@ -26,11 +26,11 @@ In this chapter, we will mainly learn how to do **universal account discovery in
 
 2. **Get UEA for Origin**: Compute the caller’s **deterministic UEA** 
 - This means for a given origin wallet, we can compute the deterministic UEA address for that wallet on push Chain. We can also check whether this UEA is already deployed.
-- To get this, we use the already available function `getOriginForUEA()`.
+- To get this, we use the already available function `getUEAForOrigin()`.
 
 *For example*:
-- Bob on Ethereum has wallet `0xABC`.
-- We can easily check if BOB already has a UEA on Push Chain with `getOriginForUEA(0xABC)` function.
+- Bob on Ethereum has wallet `0xABC...`.
+- We can compute Bob’s deterministic UEA address on Push Chain with `getUEAForOrigin(...)` (and see if it’s deployed).
 
 
 ## Why it matters
@@ -80,7 +80,8 @@ It reads from a predeployed system contract on Push Chain:
   - an origin identity `(chainNamespace, chainId, owner)` and
   - a boolean `isUEA`
 
-> Note: If you call this directly from MetaMask, `isUEA` will often be `false` (native Push caller).\n+> To see `isUEA = true`, call your contract via the universal transaction flow from the previous chapter.
+> Note: If you call this directly from MetaMask, `isUEA` will often be `false` (native Push caller).
+> To see `isUEA = true`, call your contract via the universal transaction flow from the previous chapter.
 
 ## Sample responses (what they mean)
 
@@ -102,6 +103,21 @@ It reads from a predeployed system contract on Push Chain:
 
 - First value is the **deterministic UEA address** for that origin
 - `false` means the UEA contract is **not deployed yet**
+
+## Checkpoint (3 quick questions)
+
+1. When your contract calls `getOriginForUEA(msg.sender)`, what does it return and what does `isUEA` tell you?
+2. What’s the difference between a **UOA** and a **UEA**?
+3. When is `isUEA` likely to be `false`, and what should you do to see `isUEA = true`?
+
+## What’s next
+
+In the next chapter (**JavaScript Account Conversion Helpers**), you’ll do the same mapping in JavaScript using SDK utilities:
+
+- **UEA → UOA** (convert executor to origin)
+- **UOA → UEA** (convert origin to executor)
+
+This is the common pattern for dApps: resolve a user’s universal identity off-chain, then use it for app logic, analytics, and permissions.
 
 ## References
 
