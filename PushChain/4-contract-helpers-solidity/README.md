@@ -7,7 +7,7 @@ In this chapter you’ll learn how a Push Chain contract can answer a key questi
 
 > **Who is the user behind `msg.sender`?**
 
-This is an imperative question because Push Chain allows universal smart contracts. It means users from any chain (*not just Push Chain*) can call the contract.
+This is an important question because Push Chain allows universal smart contracts. It means users from any chain (*not just Push Chain*) can call the contract.
 
 Therefore, on Push Chain, `msg.sender` might be:
 
@@ -18,12 +18,15 @@ Therefore, on Push Chain, `msg.sender` might be:
 
 In this chapter, we will mainly learn how to do **universal account discovery inside Solidity**:
 
-1. **Get Origin for UEA**: Find the caller’s **origin identity** (chain + wallet). 
-- This means for a given address, we can determine if the address is a Push Chain address or a UEA ( external chain user from ethereum, solana or base etc).
+1. **Get Origin Wallet (UOA) for an Executor Account (UEA)**: Find the caller’s **origin identity** (chain + wallet). 
+- This helps us in getting the wallet address of the origin chain and the origin chain identity.
+- We can determine the Origin Account (UOA) for any address on Push Chain, even if it's a UEA (ie: external chain user from Ethereum, Solana, Base, etc)/
 - To get this, we use the already available function `getOriginForUEA()`.
 
-2. **Get UEA for Origin**: Compute the caller’s **deterministic UEA** 
-- This means for a given origin wallet, we can compute the deterministic UEA address for that wallet on push Chain. We can also check whether this UEA is already deployed.
+2. **Get Executor Account (UEA) for Origin Wallet (UOA)**: Compute the caller’s **deterministic Executor Account (UEA)** that is deployed / will be deployed on Push Chain.
+- This helps us in getting the wallet address of an external chain user from any chain.
+- It is deterministic and is called Universal Executor Account (UEA).
+- We can also check whether this UEA is already deployed.
 - To get this, we use the already available function `getUEAForOrigin()`.
 
 *For example*:
@@ -48,7 +51,7 @@ It reads from a predeployed system contract on Push Chain:
 
 - **`UEAFactory`**: `0x00000000000000000000000000000000000000eA`
 
-`UEAFactoryDemo` exposes:
+`UEAFactoryDemo` exposes two functions that we have created:
 
 - **`discoverOrigin()`**: returns `(UniversalAccountId originAccount, bool isUEA)`
 - **`discoverUEAForOrigin(UniversalAccountId)`**: returns `(address uea, bool isDeployed)`
@@ -56,9 +59,8 @@ It reads from a predeployed system contract on Push Chain:
 ## Mental model
 
 ```mermaid
-
+flowchart LR
   UOA[UOA_origin_wallet]-->UEA[UEA_on_PushChain]
-
   UEA-->YourContract[Your_contract_on_PushChain]
 ```
 
@@ -101,6 +103,8 @@ It reads from a predeployed system contract on Push Chain:
 
 - First value is the **deterministic UEA address** for that origin
 - `false` means the UEA contract is **not deployed yet**
+
+Learn more and try it out in <a href="https://push.org/docs/chain/build/contract-helpers/" target="_blank">Push Chain Docs - Contract Helpers</a>.
 
 ## Checkpoint (3 quick questions)
 
