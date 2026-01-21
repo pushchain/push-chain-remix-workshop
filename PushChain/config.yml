@@ -1,7 +1,7 @@
 ---
 id: pushchain
-name: Push Chain
-summary: Initialize the Push Chain core library in Remix
+name: Push Chain - Universal Blockchain Tutorial
+summary: Learn how to build universal blockchain applications that you can deploy once and reach any blockchain (EVM or non-EVM) simultaneously.
 level: 1
 tags:
   - JS
