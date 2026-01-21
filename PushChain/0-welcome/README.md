@@ -1,44 +1,66 @@
+## Does this look normal?
+
 You’re a Solidity developer.
-You want to build and deploy smart contracts.
-You must also handle the operations of your deployed onchain contracts. 
+You know how to write contracts.
+You know how to deploy them.
 
-But its getting increasingly difficult as we get more chains. 
+But the world changed. Siloed users on multiple chains forced you to target:
 
-That exactly where Push Chain helps YOU.
+- More chains
+- More wallets
+- More deployments
+- More everything that nobody enjoys maintaining
 
-### Before Push Chain
+### The usual way this goes (and why it sucks)
 
-As more chains and wallets become mainstream, “shipping a dApp everywhere” usually means:
+Today, "shipping a dApp everywhere" means:
 
 - Multiple deployments (one per chain)
-- Different wallet flows / SDKs (EVM vs non‑EVM)
+- Different wallet flows and SDKs (EVM vs non‑EVM)
 - Bridges, wrappers, and custom plumbing
-- Fragmented UX (users switch networks, acquire new gas tokens, and drop off)
+- Users switching networks, juggling gas tokens, and dropping off
 
-Over time, this doesn’t get easier — it gets harder.
+This does not get better over time.
+It compounds.
 
-### Why Push Chain
+### Push Chain does something different
 
 - **Deploy once, reach many chains**: Deploy your Solidity contract once on Push Chain and let users interact from multiple origin chains.
-- **Supports both EVM and non-EVM chains**: Instantly support all chains in crypto including non-EVM ones with the same contract.
+- **Supports both EVM and non-EVM chains**: Instantly reach to users from all supported chains, including non-EVM ones, with the same contract.
 - **No contract rewrites**: Push Chain is **100% EVM-compatible** with same Solidity, ABI, tooling.
 - **Better UX for users**: Users can keep using familiar wallets (like MetaMask or Phantom) without you rebuilding everything per chain.
 
-### How Push Chain makes it easy for you
+### The KISS way
 
-Push Chain introduces a **universal execution model**:
+Push Chain uses a **universal execution model**:
 
-- Users **sign on their origin chain**
+- Users sign transactions from any chain (their **origin chain**)
 - Execution happens **on Push Chain**
-- The system represents origin users on Push Chain via smart accounts, so you can keep your contract logic simple
+- The system represents origin users on Push Chain via smart accounts, so you can keep your contract logic unchanged
 
-This removes the need for you to manually stitch together per‑chain deployments and custom interoperability code.
+Your contract stays simple.
+The universality lives underneath.
 
-### By the end of this workshop, you will
+No per-chain deployments.
+No manual interoperability glue.
 
-- Know what Push Chain is for (and its USP)
-- Deploy a Solidity contract on Push Chain from Remix
-- Send a universal transaction (origin chain signature → Push Chain execution)
-- Understand the basics of UOA/UEA and how to detect origin in Solidity
+### What you'll do in this workshop
 
-Next up: a brief intro to Push Chain core concepts, then we’ll start deploying contracts.
+- Deploy a normal Solidity contract using **Remix**
+- Call it like any other **EVM chain**
+- Then call the **same contract** from another chain
+- See how a contract can tell **where a user came from**
+- Understand what UOA and UEA are, and why `msg.sender` gets interesting
+
+No theory dump.
+This is hands-on, deploy quick and explain later type of tutorial.
+
+### How to approach this
+
+Assume this is just another EVM chain.
+
+Because at first, it is.
+
+Then watch that assumption quietly break.
+
+Next up: the only core concepts you actually need before deploying.

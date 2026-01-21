@@ -1,26 +1,35 @@
 ---
 id: pushchain
-name: Push Chain - Universal Blockchain Tutorial
-summary: Learn how to build universal apps that you deploy once and reach any blockchain (EVM or non-EVM) simultaneously.
+name: Push Chain: Deploy Once. Let Everyone In.
+summary: Write a normal Solidity contract, deploy it once, then let users call it from any chain. No redeploys. No bridges. No nonsense.
 level: 1
 tags:
-  - JS
+  - Solidity
   - Remix
+  - Cross-chain
   - PushChain
+
 steps:
-  - name: Welcome to Push Chain
+  - name: Welcome — This Is Not a Normal Chain
     path: 0-welcome
-  - name: Core Concepts
+
+  - name: The Only Concepts You Actually Need
     path: 1-core-concepts
-  - name: Deploy Contracts on Push Chain
+
+  - name: Deploy Like Ethereum (Because It Is)
     path: 2-deploy-contracts
-  - name: Send Universal Transaction to Simple Counter Contract
+
+  - name: Call Your Contract From Another Chain
     path: 3-send-universal-transaction
-  - name: Universal Account Discovery with Solidity
+
+  - name: Who Is msg.sender Really?
     path: 4-contract-helpers-solidity
-  - name: JavaScript Account Conversion Helpers
+
+  - name: Do the Same Thing in JavaScript
     path: 5-utility-functions-js
-  - name: Universal Counter Smart Contract
+
+  - name: Build a Contract That Knows Where Users Come From
     path: 7-universal-counter-solidity
-  - name: Conclusion
+
+  - name: You’re Done. Here’s Why This Matters
     path: 8-conclusion
