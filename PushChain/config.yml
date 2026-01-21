@@ -1,6 +1,6 @@
 ---
 id: pushchain
-name: Push Chain: Deploy Once. Let Everyone In.
+name: Push Chain - Deploy Once. Let Everyone In.
 summary: Write a normal Solidity contract, deploy it once, then let users call it from any chain. No redeploys. No bridges. No nonsense.
 level: 1
 tags:
