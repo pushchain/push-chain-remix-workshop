@@ -58,10 +58,10 @@ const txParams = {
 
 Few example transactions showcasing the same interaction from multiple chains:
 
-- <https://donut.push.network/tx/0xa3478c4d4034355bd3828393256e5d80806a0c45d53c67b64f0f32305e0b54de>Universal Transaction from Sepolia</a>
-- <https://donut.push.network/tx/0xd3333e13729872f326f11a15020b90eba75ccbb917ff1096cf444881acb124f8>Universal Transaction from Solana</a>
+- <a href="https://donut.push.network/tx/0xa3478c4d4034355bd3828393256e5d80806a0c45d53c67b64f0f32305e0b54de">Universal Transaction from Sepolia</a>
+- <a href="https://donut.push.network/tx/0xd3333e13729872f326f11a15020b90eba75ccbb917ff1096cf444881acb124f8">Universal Transaction from Solana</a>
 
-**Note:**This transaction showcases calling `increment()` on the Simple Counter deployed on Push Chain from any chain, natively.
+**Note:** This transaction showcases calling `increment()` on the Simple Counter deployed on Push Chain from any chain, natively.
 
 ## References
 

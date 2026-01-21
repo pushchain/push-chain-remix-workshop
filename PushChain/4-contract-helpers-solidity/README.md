@@ -1,5 +1,3 @@
-## Universal Account Discovery (Solidity)
-
 You’ve already:
 
 - Deployed a Solidity contract to Push Chain Donut Testnet.
@@ -9,7 +7,7 @@ In this chapter you’ll learn how a Push Chain contract can answer a key questi
 
 > **Who is the user behind `msg.sender`?**
 
-This is an imperative question because Push Chain allows universal smart contracts. It means users from any chain ( *not just Push Chain* ) can call the contract.
+This is an imperative question because Push Chain allows universal smart contracts. It means users from any chain (*not just Push Chain*) can call the contract.
 
 Therefore, on Push Chain, `msg.sender` might be:
 

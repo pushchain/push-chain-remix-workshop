@@ -19,7 +19,8 @@ Over time, this doesn’t get easier — it gets harder.
 
 ### Why Push Chain
 
-- **Deploy once, reach many chains**: Deploy your Solidity contract once on Push Chain and let users interact from multiple origin chains (EVM and non-EVM both).
+- **Deploy once, reach many chains**: Deploy your Solidity contract once on Push Chain and let users interact from multiple origin chains.
+- **Supports both EVM and non-EVM chains**: Instantly support all chains in crypto including non-EVM ones with the same contract.
 - **No contract rewrites**: Push Chain is **100% EVM-compatible** with same Solidity, ABI, tooling.
 - **Better UX for users**: Users can keep using familiar wallets (like MetaMask or Phantom) without you rebuilding everything per chain.
 
