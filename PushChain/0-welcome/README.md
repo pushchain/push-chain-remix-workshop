@@ -19,7 +19,7 @@ Over time, this doesn’t get easier — it gets harder.
 
 ### Why Push Chain
 
-- **Deploy once, reach many chains**: Deploy your Solidity contract once on Push Chain and let users interact from multiple origin chains.
+- **Deploy once, reach many chains**: Deploy your Solidity contract once on Push Chain and let users interact from multiple origin chains (EVM and non-EVM both).
 - **No contract rewrites**: Push Chain is **100% EVM-compatible** with same Solidity, ABI, tooling.
 - **Better UX for users**: Users can keep using familiar wallets (like MetaMask or Phantom) without you rebuilding everything per chain.
 
@@ -40,4 +40,4 @@ This removes the need for you to manually stitch together per‑chain deployment
 - Send a universal transaction (origin chain signature → Push Chain execution)
 - Understand the basics of UOA/UEA and how to detect origin in Solidity
 
-Next up: a brief intro to Push Chain concepts, then we’ll start deploying contracts.
+Next up: a brief intro to Push Chain core concepts, then we’ll start deploying contracts.

@@ -4,8 +4,8 @@ Learn how to use the PushChain SDK to send cross-chain Universal Transactions fr
 
 Before running the script, make sure you have the following in place:
 
-- **Funding required**: The generated wallet needs PC tokens to execute transactions.
-- **Get testnet tokens**: Visit <a href="https://faucet.push.org/" target="_blank">Push Chain Faucet</a> to get PC tokens for testing.
+- **Funding required**: The generated wallet needs native tokens (in this case Sepolia ETH) to execute transactions.
+- **Get testnet tokens**: In case you are running this directly on Push Chain, you will need PC tokens to execute transactions. Visit <a href="https://faucet.push.org/" target="_blank">Push Chain Faucet</a> to get PC tokens for testing.
 
 ## What we will do
 
@@ -17,7 +17,7 @@ Before running the script, make sure you have the following in place:
 ## Simple Counter Contract
 
 The script interacts with the Simple Counter contract deployed at:
-<a href="https://donut.push.network/address/0x9F95857e43d25Bb9DaFc6376055eFf63bC0887C1?tab=index">`0x9F95857e43d25Bb9DaFc6376055eFf63bC0887C1`</a>
+<a href="https://donut.push.network/address/0x5FbDB2315678afecb367f032d93F642f64180aa3?tab=index">`0x5FbDB2315678afecb367f032d93F642f64180aa3`</a>
 
 ## How it works
 
@@ -54,9 +54,14 @@ const txParams = {
 };
 ```
 
-## Example Transaction
+## Example Transactions
 
-This transaction showcases calling `increment()` on the Simple Counter deployed on Push Chain from a Solana wallet using Phantom, see <a href="https://donut.push.network/tx/0x8fde3a025ce719c33cf9436763016f0e2ebb16563a6be44dc3b48c45a37878c6" target="_blank">donut.push.network for the transaction details</a>.
+Few example transactions showcasing the same interaction from multiple chains:
+
+- <https://donut.push.network/tx/0xa3478c4d4034355bd3828393256e5d80806a0c45d53c67b64f0f32305e0b54de>Universal Transaction from Sepolia</a>
+- <https://donut.push.network/tx/0xd3333e13729872f326f11a15020b90eba75ccbb917ff1096cf444881acb124f8>Universal Transaction from Solana</a>
+
+**Note:**This transaction showcases calling `increment()` on the Simple Counter deployed on Push Chain from any chain, natively.
 
 ## References
 

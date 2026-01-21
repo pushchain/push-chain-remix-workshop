@@ -10,8 +10,8 @@ tags:
 steps:
   - name: Welcome to Push Chain
     path: 0-welcome
-  - name: Intro to Push Chain
-    path: 1-intro-to-Push-Chain
+  - name: Core Concepts
+    path: 1-core-concepts
   - name: Deploy Contracts on Push Chain
     path: 2-deploy-contracts
   - name: Send Universal Transaction to Simple Counter Contract

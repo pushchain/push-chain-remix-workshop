@@ -1,10 +1,12 @@
-Push Chain is a True Universal Layer 1 that is 100% EVM-compatible. In practice, deploying to Push Chain looks just like deploying to any other EVM chain: you write a normal Solidity contract, compile it, and choose Push Chain as the target network.
+Push Chain is a True Universal Layer 1 that is 100% EVM-compatible. It introduces chain-native interop as a primitive allowing any app built on top to inherit universal capabilities with zero on-chain code changes.
+
+In practice, deploying to Push Chain looks just like deploying to any other EVM chain: you write a normal Solidity contract, compile it, and choose Push Chain as the target network.
 
 In this chapter you will learn the minimum theory you need before writing code:
 
 **Account types on Push Chain**
-- **UEAs** and why they exist
-- **Universal Transactions** (sign on origin chain → execute on Push Chain)
+- **Universal Executor Accounts (UEAs)** → maintains origin user identity on Push Chain
+- **Universal Transactions** → allows native signing on origin chain to execute on Push Chain
 
 If you want to go deeper later, keep these doc links handy:
 
