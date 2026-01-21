@@ -2,7 +2,7 @@ Push Chain is a True Universal Layer 1 that is 100% EVM-compatible. In practice,
 
 In this chapter you will learn the minimum theory you need before writing code:
 
-- **Account types on Push Chain**
+**Account types on Push Chain**
 - **UEAs** and why they exist
 - **Universal Transactions** (sign on origin chain → execute on Push Chain)
 
