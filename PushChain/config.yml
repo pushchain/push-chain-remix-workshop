@@ -1,7 +1,7 @@
 ---
 id: pushchain
 name: Push Chain - Universal Blockchain Tutorial
-summary: Learn how to build universal blockchain applications that you can deploy once and reach any blockchain (EVM or non-EVM) simultaneously.
+summary: Learn how to build universal apps that you deploy once and reach any blockchain (EVM or non-EVM) simultaneously.
 level: 1
 tags:
   - JS
@@ -22,5 +22,5 @@ steps:
     path: 5-utility-functions-js
   - name: Universal Counter Smart Contract
     path: 7-universal-counter-solidity
-  - name: You're Done! Here's what actually matters
+  - name: Conclusion
     path: 8-conclusion
