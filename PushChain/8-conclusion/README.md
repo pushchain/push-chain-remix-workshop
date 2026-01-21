@@ -1,7 +1,11 @@
-You’ve finished the Push Chain Remix workshop.
-This page summarizes what you built, what you learned, and what to do next.
+You didn’t just complete a workshop.
 
-## What you built (end-to-end)
+You deployed **one Solidity contract** that can be executed by users from **multiple blockchains**, without redeploying, bridging, or changing your code.
+
+That is the point of Push Chain.
+
+
+## What you actually did
 
 - **Deployed contracts on Push Chain** from Remix (Donut Testnet)
 - **Sent a universal transaction** (sign on an origin chain → execute on Push Chain)
@@ -35,30 +39,28 @@ This page summarizes what you built, what you learned, and what to do next.
 
 These ideas are designed to **use universal smart contracts for real product UX**, not just demos. The pattern in all of them is the same: deploy once on Push Chain, then make decisions using the user’s **origin identity (UOA)**.
 
-1. **Universal subscription + paywall (SaaS for web3)**
+1. **Universal DeFi + Lending**
+    - Build DeFi that can be used by users of any chain. 
+    - Pool liquidity or assets from every chain.
+    - Create a DEX that can trade assets from every chain.
+ 
+2. **Universal payments + subscription + paywall (SaaS for web3)**
+   - Allow users to pay for your app from any chain.
    - Build a single on-chain subscription registry on Push Chain.
    - Users can subscribe from different origin chains, but you track entitlements by **UOA** (not by per-chain wallets).
-   - Use origin chain as a pricing lever (e.g., discounts per chain, region/market segmentation).
-
-2. **Multi-chain reputation + sybil resistance registry**
-   - Record reputation score, badges, or attestations in one universal contract.
-   - When a user interacts from any chain, resolve their origin identity and update/verify reputation under the same user record.
-   - Useful for gated mints, airdrops, governance access, or community moderation.
 
 3. **Universal airdrop/claims engine (one contract, many chains)**
    - A single claims contract on Push Chain where eligibility is keyed by **UOA**.
    - Users claim from their origin chain without needing bridges/wrappers.
    - Great for ecosystem launches: one airdrop pipeline, many communities.
 
-4. **Cross-chain loyalty + rewards program for dApps**
-   - Track user activity and points in one place even if users interact from multiple chains/wallets.
-   - Prevent double counting by keying rewards to **UOA**.
-   - Add “origin-aware rewards”: boost points for specific origin chains (campaigns).
+4. **RWA (Real World Assets) or Tokenization**
+   - Build RWA that allows users to access, buy or trade these assets from any chain.
+   - Launch Tokenized Assets on Push Chain and allow users to access it from any chain.
 
-5. **Universal access control for contracts + on-chain apps**
-   - Build a reusable “universal ACL” contract: roles/permissions keyed by **UOA**.
-   - Other Push Chain contracts consult it to decide who can call what.
-   - This is useful for DAOs, multi-chain teams, compliance rules, admin actions, and feature gating.
+5. **Gaming + NFTs**
+   - Allow users to access, buy or trade these assets from any chain.
+   - Launch Tokenized Assets on Push Chain and allow users to access it from any chain.
 
 ## Resources and doc links
 

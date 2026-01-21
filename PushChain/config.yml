@@ -22,5 +22,5 @@ steps:
     path: 5-utility-functions-js
   - name: Universal Counter Smart Contract
     path: 7-universal-counter-solidity
-  - name: Conclusion
+  - name: You're Done! Here's what actually matters
     path: 8-conclusion
