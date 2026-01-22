@@ -1,19 +1,17 @@
-Push Chain is a True Universal Layer 1 that is 100% EVM-compatible. It introduces chain-native interop as a primitive allowing any app built on top to inherit universal capabilities with zero on-chain code changes.
+Before we write code, there are two ideas you need to be comfortable with.
+Nothing more.
 
-In practice, deploying to Push Chain looks just like deploying to any other EVM chain: you write a normal Solidity contract, compile it, and choose Push Chain as the target network.
+The important thing to know upfront:
 
-In this chapter you will learn the minimum theory you need before writing code:
+> Deploying on Push Chain feels exactly like deploying on any other EVM chain.
 
-**Account types on Push Chain**
-- **Universal Executor Accounts (UEAs)** → maintains origin user identity on Push Chain
-- **Universal Transactions** → allows native signing on origin chain to execute on Push Chain
+Same Solidity.
+Same ABI.
+Same tooling.
 
-If you want to go deeper later, keep these doc links handy:
+The difference shows up **when users call your contract**, not when you deploy it.
 
-- <a href="https://push.org/docs/chain/" target="_blank">Intro to Push Chain</a>
-- <a href="https://push.org/docs/chain/important-concepts/" target="_blank">Important Concepts</a>
-
-## Account types (high level)
+## First: account types (quick refresher)
 
 Push Chain supports the standard Ethereum-style accounts you already know:
 
@@ -21,33 +19,61 @@ Push Chain supports the standard Ethereum-style accounts you already know:
   Regular private‑key‑controlled addresses (for example, MetaMask wallets).
 
 - **Smart Contract Accounts (Smart Accounts)**<br />
-  On-chain contracts that hold logic (for example, multisigs, social recovery wallets).
+  On-chain contracts that hold logic (multisigs, smart wallets, etc).
 
-For this workshop, two universal identity concepts matter:
+Nothing new here.
 
-- **Universal Origin Account (UOA)**<br />
-  The user’s original wallet identity on their origin chain (for example, an Ethereum Sepolia EOA or a Solana wallet).
+What is new is how Push Chain represents users from other chains.
 
-- **Universal Executor Account (UEA)**<br />
-  A smart account on Push Chain that represents that origin user when execution happens on Push Chain.
+## Universal Identity (this is the important part)
 
-In other words: **the UOA is who the user is** on their home chain; **the UEA is how that user shows up** on Push Chain.
+When a user interacts with your contract, two identities matter:
 
-Learn more in <a href="https://push.org/docs/chain/important-concepts/#account-types-on-push-chain" target="_blank">Important Concepts → Account Types on Push Chain</a>.
+- **Universal Origin Account (UOA)**
+  Who the user actually is on their home chain
+  (for example, an Ethereum wallet or a Solana wallet)
 
-## Universal transactions (high level)
+- **Universal Executor Account (UEA)**
+  A smart account on Push Chain that represents that user during execution
 
-Universal transactions let a user **sign on their origin chain** while your contract **executes on Push Chain**.
+Think of it like this:
 
-When you send a universal transaction, the SDK:
+> The **UOA** is the user’s real identity.
+> The **UEA** is the execution avatar.
 
-1. Detects the user’s origin chain.
-2. Creates/uses the user’s UEA on Push Chain.
-3. Routes the call so it executes on Push Chain as the UEA.
+Your contract sees the UEA.
+Push Chain can tell you which UOA it represents.
 
-You focus on application logic instead of building per‑chain deployments, bridges, and custom routing.
+That’s it.
+
+### Why UEAs exist at all
+
+Without UEAs, universal execution wouldn’t work.
+
+**UEAs allow:**
+- Users to sign transactions on their own chain
+- Execution to happen safely on Push Chain
+- Your Solidity code to stay unchanged
+
+You don’t deploy UEAs.
+You don’t manage them.
+You just interact with them.
+
+## Universal Transactions (high level)
+
+Universal transactions separate **signing** from **execution**.
+
+- Users sign transactions on their origin chain
+- The transaction executes on Push Chain
+- Execution happens as the user’s UEA
+
+From your contract’s perspective:
+- The call looks like a **normal EVM call**
+- `msg.sender` may be a UEA instead of a wallet
+- You can ask the chain who that UEA represents
 
 ### Why Universal Transactions
+
 Universal Transactions comes with many benefits, such as: 
 - **Cross-chain compatibility**: Send transactions from any chain (EVM or non-EVM).
 - **No bridging required**: Direct native transactions without wrapping or bridging.
@@ -55,10 +81,30 @@ Universal Transactions comes with many benefits, such as:
 
 Learn more in <a href="https://push.org/docs/chain/build/send-universal-transaction/" target="_blank">Send Universal Transaction</a>.
 
-## Checkpoint (quick self-check)
+## Why this matters to you
 
-1. What is the difference between a **UOA** and a **UEA**?
-2. In a universal transaction, where does the user **sign** and where does the contract **execute**?
-3. Why does the UEA exist (what problem does it solve for your contracts/dApps)?
+This model lets you:
+- Deploy a contract once
+- Let users interact from multiple chains
+- Keep one global state
+- Write origin-aware logic when you want to
+
+You focus on application logic.
+Push Chain handles the universality underneath.
+
+## One thing to keep in mind
+
+At first, everything looks normal. The moment you inspect `msg.sender`, things get interesting.
+
+We’ll get there soon.
+
+## Quick self-check (30 seconds)
+
+Before moving on, make sure this is clear:
+	1.	UOA = who the user is on their home chain
+	2.	UEA = how that user shows up during execution on Push Chain
+	3.	Users sign on their origin chain, contracts execute on Push Chain
+
+If that makes sense, you’re ready.
 
 Next up: deploying your first Solidity contract to Push Chain from Remix.
