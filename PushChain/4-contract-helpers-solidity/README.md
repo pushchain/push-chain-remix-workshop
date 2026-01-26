@@ -1,47 +1,96 @@
-You’ve already:
+In the previous chapter, something strange happened.
 
-- Deployed a Solidity contract to Push Chain Donut Testnet.
-- Sent a universal transaction to a `SimpleCounter` contract on Push Chain.
+- You called a contract on Push Chain Donut Testnet
+- from **another blockchain**
+- without redeploying it.
 
-In this chapter you’ll learn how a Push Chain contract can answer a key question:
+That raises an obvious question:
 
 > **Who is the user behind `msg.sender`?**
 
-This is an important question because Push Chain allows universal smart contracts. It means users from any chain (*not just Push Chain*) can call the contract.
+## The short answer
 
-Therefore, on Push Chain, `msg.sender` might be:
+On Push Chain, msg.sender is **not always the user**.
 
-- a native Push Chain account, or
-- a **UEA** (Universal Executor Account) representing a user from another chain.
+It is sometimes a **Universal Executor Account (UEA)**.
+Not the country. The smart account.
 
-## Goal
+A UEA is the on-chain executor that represents a user who signed the transaction on another chain.
 
-In this chapter, we will mainly learn how to do **universal account discovery inside Solidity**:
+The important part:
 
-1. **Get Origin Wallet (UOA) for an Executor Account (UEA)**: Find the caller’s **origin identity** (chain + wallet). 
-- This helps us in getting the wallet address of the origin chain and the origin chain identity.
-- We can determine the Origin Account (UOA) for any address on Push Chain, even if it's a UEA (ie: external chain user from Ethereum, Solana, Base, etc)/
-- To get this, we use the already available function `getOriginForUEA()`.
+- Even when msg.sender is a UEA, **you can still recover the real user on-chain**.
 
-2. **Get Executor Account (UEA) for Origin Wallet (UOA)**: Compute the caller’s **deterministic Executor Account (UEA)** that is deployed / will be deployed on Push Chain.
-- This helps us in getting the wallet address of an external chain user from any chain.
-- It is deterministic and is called Universal Executor Account (UEA).
-- We can also check whether this UEA is already deployed.
-- To get this, we use the already available function `getUEAForOrigin()`.
+That real user is called the **Universal Origin Account (UOA)**.
 
-*For example*:
+## The mental model to remember
+
+- **UOA** = who the user actually is on their home chain
+- **UEA**  = how that user shows up when execution happens on Push Chain
+
+Your contract sees the UEA.
+Push Chain lets you resolve the UOA behind it.
+
+That’s the unlock.
+
+## Why this exists
+
+Without UEAs, universal execution would not be possible.
+
+UEAs allow:
+- Users to sign transactions on their own chain
+- Execution to happen safely on Push Chain
+- Your Solidity code to remain unchanged
+
+You don’t deploy UEAs.
+You don’t manage UEAs.
+You just interact with them.
+
+## What you'll do in this chapter
+
+You'll learn how to:
+- Detect whether `msg.sender` is a native Push account, or a **UEA**
+- Recover the caller's **origin chain and wallet (UOA)**
+- Compute the **deterministic UEA** for any origin user
+
+Best part: All of this happens **inside Solidity**.
+
+## How origin discovery works (high level)
+
+There are two primitives you need:
+
+**1. Resolve origin from executor**
+- Given an address on Push Chain (including `msg.sender`)
+- You can determine whether it's a native Push Account or a **UEA** (ie: external chain user from Ethereum, Solana, Base, etc)
+- And recover the corresponding **UOA** (origin identity: chain + wallet)
+
+This is done using:
+- `getOriginForUEA(address)`
+
+**2. Resolve executor from origin**
+- Given an origin identity (UOA)
+- You can compute the **deterministic UEA address** on Push Chain
+- And check if it's already deployed
+
+This is done using:
+- `getUEAForOrigin(UniversalAccountId)`
+
+> **Note**: The `UniversalAccountId` is a struct that contains the chain ID, namespace, and the wallet address of the origin user. To learn more, see the [Push Chain Docs - Universal Account Id](https://push.org/docs/chain/build/contract-helpers/#ueafactory--getoriginforuea).
+
+*Example*:
 - Bob on Ethereum has wallet `0xABC...`.
 - We can compute Bob’s deterministic UEA address on Push Chain with `getUEAForOrigin(...)` (and see if it’s deployed).
+- Even before Bob ever interacts
 
+## What does it unlock
 
-## Why it matters
-
-You use origin discovery to:
+Once you can map **UEA ↔ UOA**, you can:
 
 - Apply different rules per origin chain (Ethereum vs Solana, etc.)
-- Rate-limit per real user (origin) instead of per executor address (UEA)
-- Build allowlists / compliance rules based on origin chain + wallet
+- Build allowlists / compliance logic that work across chains
 - Attribute analytics back to the user’s home chain
+
+This is where "universal apps" stop being theory and start being enforceable.
 
 ## Let's Try it Out
 
@@ -49,26 +98,37 @@ You’ll deploy `UEAFactoryDemo.sol`, a small **read-only** helper contract.
 
 It reads from a predeployed system contract on Push Chain:
 
-- **`UEAFactory`**: `0x00000000000000000000000000000000000000eA`
+- **`UEAFactory.sol`**: `0x00000000000000000000000000000000000000eA`
 
-`UEAFactoryDemo` exposes two functions that we have created:
+This system contract already exists.
+You’re just querying it.
 
-- **`discoverOrigin()`**: returns `(UniversalAccountId originAccount, bool isUEA)`
-- **`discoverUEAForOrigin(UniversalAccountId)`**: returns `(address uea, bool isDeployed)`
+### What the demo contract (UEAFactoryDemo) exposes
 
-## Mental model
+`UEAFactoryDemo` gives you two functions:
+
+- **`discoverOrigin()`** 
+  Returns the origin identity or `msg.sender` and whether the caller is a UEA. Returns `(UniversalAccountId originAccount, bool isUEA)`.
+- **`discoverUEAForOrigin(UniversalAccountId)`** 
+  Computes the deterministic UEA address for a given origin user. Returns `(address uea, bool isDeployed)`.
+
+No state changes. No risk.
+
+### Mental model
 
 ```mermaid
-flowchart LR
-  UOA[UOA_origin_wallet]-->UEA[UEA_on_PushChain]
-  UEA-->YourContract[Your_contract_on_PushChain]
+  UOA[Origin wallet on another chain]
+  UEA[Executor account on Push Chain]
+  C[Your contract]
+
+  UOA --> UEA --> C
 ```
 
 ## How to try this in Remix
 
 1. Open <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a>.
 2. Create `UEAFactoryDemo.sol` and paste the contract from this folder.
-3. In MetaMask, switch to **Push Chain Donut Testnet**.
+3. Switch *(MetaMask)* to **Push Chain Donut Testnet**.
 4. In Remix → **Deploy & Run**, select **Injected Provider – MetaMask**.
 5. Deploy `UEAFactoryDemo`.
 6. Under **Deployed Contracts** call:
@@ -80,41 +140,35 @@ flowchart LR
   - an origin identity `(chainNamespace, chainId, owner)` and
   - a boolean `isUEA`
 
-> Note: If you call this directly from MetaMask, `isUEA` will often be `false` (native Push caller).
-> To see `isUEA = true`, call your contract via the universal transaction flow from the previous chapter.
-
-## Sample responses (what they mean)
-
-### `discoverOrigin()`
-
-```json
+Example:
+```
 [["eip155","11155111","0xfd6c2fe69be13d8be379ccb6c9306e74193ec1a9"], true]
 ```
 
-- `eip155` + `11155111` → Ethereum Sepolia origin
-- `0xfd6c...c1a9` → the origin wallet address on that chain
-- `true` → `msg.sender` on Push Chain is a **UEA** for that origin wallet
+Meaning:
+- origin chain: Ethereum Sepolia
+- origin wallet: 0xfd6c…c1a9
+- msg.sender was a UEA
 
-### `discoverUEAForOrigin(UniversalAccountId)`
 
-```json
-["0x3445AEE60c70c9f5A947A28B879ca6B449B0a4ce", false]
-```
-
-- First value is the **deterministic UEA address** for that origin
-- `false` means the UEA contract is **not deployed yet**
+> Note: If you call this directly from MetaMask, `isUEA` will usually be `false`.
+> To see `isUEA = true`, call your contract via a universal transaction.
 
 Learn more and try it out in <a href="https://push.org/docs/chain/build/contract-helpers/" target="_blank">Push Chain Docs - Contract Helpers</a>.
 
-## Checkpoint (3 quick questions)
+## Checkpoint
 
-1. When your contract calls `getOriginForUEA(msg.sender)`, what does it return and what does `isUEA` tell you?
-2. What’s the difference between a **UOA** and a **UEA**?
-3. When is `isUEA` likely to be `false`, and what should you do to see `isUEA = true`?
+You should now be comfortable with this:
+
+1.	`msg.sender` may be a UEA
+2.	A UEA always maps to exactly one UOA
+3.	Push Chain lets you resolve that mapping on-chain
+
+If that makes sense, you’re good.
 
 ## What’s next
 
-In the next chapter (**JavaScript Account Conversion Helpers**), you’ll do the same mapping in JavaScript using SDK utilities:
+Next, you’ll do the same mapping **off-chain** using the SDK:
 
 - **UEA → UOA** (convert executor to origin)
 - **UOA → UEA** (convert origin to executor)
@@ -127,3 +181,4 @@ This is the common pattern for dApps: resolve a user’s universal identity off-
 - Contract Helpers: <a href="https://push.org/docs/chain/build/contract-helpers/#ueafactory--getoriginforuea" target="_blank">UEAFactory → getOriginForUEA</a>
 - Contract Helpers: <a href="https://push.org/docs/chain/build/contract-helpers/#ueafactory--getueafororigin" target="_blank">UEAFactory → getUEAForOrigin</a>
 
+**Next up**: Mapping users between UOA and UEA in JavaScript
