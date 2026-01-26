@@ -26,14 +26,17 @@ This script uses `@pushchain/core` utilities instead of calling the on-chain fac
 ### 1. Convert Executor Address to Origin Account
 
 **`PushChain.utils.account.convertExecutorToOriginAccount(ueaAddress)`**
+
 Use this when you have an address on Push Chain (often `msg.sender` from logs) and you want to know the real user behind it.
 
 - **Input**: `ueaAddress: string`
 - **Returns**:
   - `account`: `{ chain: string, address: string }`
+
     The resolved origin identity (UOA)
 
   - `exists`: `boolean`
+
     Whether the mapping exists (executor is a UEA)
 
 **Mental model**: "Who is the executor really, what chain do they belong to?"
@@ -41,14 +44,17 @@ Use this when you have an address on Push Chain (often `msg.sender` from logs) a
 ### 2. Convert Origin Account to Executor Address
 
 **`PushChain.utils.account.convertOriginToExecutor(universalAccount)`**
+
 Use this when you know the user’s origin identity and want to compute their deterministic executor address on Push Chain.
 
 - **Input**: `universalAccount` returned by `PushChain.utils.account.toUniversal(address, { chain })`
 - **Returns**:
   - `address`: `string`
+
   The deterministic UEA address for that origin
 
   - `deployed`: `boolean`
+  
   Whether that UEA contract is deployed yet
 
 **Mental model**: "Where will this origin user execute from on Push Chain?"
