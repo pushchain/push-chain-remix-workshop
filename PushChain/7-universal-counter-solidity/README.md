@@ -5,7 +5,7 @@ So far, you've seen:
 - how universal execution works
 - how to resolve a user’s origin identity
 
-Now you’ll build a contract that makes this **imposible to ignore**.
+Now you’ll build a contract that makes this **impossible to ignore**.
 
 > the same `increment()` function behaves differently depending on which chain the user comes from.
 
@@ -15,17 +15,21 @@ Deploy `UniversalCounter.sol` on Push Chain and learn how to:
 
 - Detect whether the caller is a **native Push Chain account** or a **UEA**
 - Read the caller’s origin `(chainNamespace, chainId)`
-- Track counters per origin chain (plus a total)
+- Track **separate state (counters) per origin chain**
 
 ## What is the Universal Counter?
 
 `UniversalCounter` is a “hello world” universal app:
 
-- One contract, deployed once (on Push Chain)
-- Users from different origin chains call the same function
-- The contract can keep **separate state per origin**
+- One contract
+- One deployment (on Push Chain)
+- One function (`increment()`) that users from different chains call
+- Which increments different counters based on where the user came from
 
-### What makes it “universal”
+Every user calls the same `increment()` function.
+The contract decides **what to do** based on where the user came from.
+
+### Why this is different
 
 On a normal EVM chain, you usually treat `msg.sender` as “the user”.
 
@@ -34,13 +38,15 @@ On Push Chain, `msg.sender` can be a **UEA** (a smart account representing an ex
 - “Is this caller a UEA?”
 - “If yes, what origin chain + wallet does it represent?”
 
+This lets you write **origin-aware Solidity**.
+
 ## What the contract does (quick)
 
 `UniversalCounter.sol` keeps three counters:
 
-- `countPC`: calls made by **native Push Chain accounts**
-- `countEth`: calls coming from **Ethereum Sepolia** origins
-- `countSol`: calls coming from **Solana Devnet** origins
+- `countPC`: calls from **native Push Chain accounts** (Push Chain origin)
+- `countEth`: calls from **Ethereum Sepolia** (Ethereum origin)
+- `countSol`: calls from **Solana Devnet** (Solana origin)
 
 When someone calls `increment()`:
 
@@ -90,12 +96,18 @@ When the call is executed as a UEA:
   - `countEth` increments if the origin is Sepolia
   - `countSol` increments if the origin is Solana Devnet
 
-## Checkpoint (3 quick questions)
+## Checkpoint
+
+Make sure this is clear:
 
 1. Why does a MetaMask call usually increment `countPC` instead of `countEth` / `countSol`?
 2. What does `UEAFactory.getOriginForUEA(msg.sender)` return, and what is the purpose of `isUEA`?
 3. What happens if the origin chain is not Sepolia or Solana Devnet in this contract?
 
+If you can answer these, you understand origin-aware contracts.
+
 ## Reference
 
 - For a complete tutorial with a UI, see: <a href="https://push.org/docs/chain/tutorials/basics/tutorial-universal-counter/" target="_blank">Universal Counter App</a>
+
+**Next up**: Conclusion, you just **unchained** your smart contracts from single chains 🚀

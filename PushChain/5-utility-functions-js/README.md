@@ -2,12 +2,6 @@ In the last chapter, you resolved the real user behind `msg.sender` **inside Sol
 
 Now we’ll do the same mapping **off-chain** using the <a href="https://www.npmjs.com/package/@pushchain/core">`@pushchain/core`</a> SDK.
 
-This is what most apps actually need:
-- Frontends resolving identity for UX
-- Backends / indexers attributing actions to the real origin user
-- Analytics and permissions keyed by UOA instead of random executor addresses
-
-
 ## What you'll do
 
 You’ll use two high-level utilities to map between:
@@ -31,13 +25,9 @@ Use this when you have an address on Push Chain (often `msg.sender` from logs) a
 
 - **Input**: `ueaAddress: string`
 - **Returns**:
-  - `account`: `{ chain: string, address: string }`
+  - `account`: `{ chain: string, address: string }` - The resolved origin identity (UOA)
 
-    The resolved origin identity (UOA)
-
-  - `exists`: `boolean`
-
-    Whether the mapping exists (executor is a UEA)
+  - `exists`: `boolean` - Whether the mapping exists (executor is a UEA)
 
 **Mental model**: "Who is the executor really, what chain do they belong to?"
 
@@ -49,13 +39,8 @@ Use this when you know the user’s origin identity and want to compute their de
 
 - **Input**: `universalAccount` returned by `PushChain.utils.account.toUniversal(address, { chain })`
 - **Returns**:
-  - `address`: `string`
-
-  The deterministic UEA address for that origin
-
-  - `deployed`: `boolean`
-  
-  Whether that UEA contract is deployed yet
+  - `address`: `string` - The deterministic UEA address for that origin
+  - `deployed`: `boolean` - Whether that UEA contract is deployed yet
 
 **Mental model**: "Where will this origin user execute from on Push Chain?"
 
@@ -63,6 +48,8 @@ Use this when you know the user’s origin identity and want to compute their de
 
 - Frontends resolving identity for UX
 - Attributing actions to the real origin user
+- Backends / indexers attributing actions to the real origin user
+- Analytics and permissions keyed by UOA instead of random executor addresses
 
 ## References
 
