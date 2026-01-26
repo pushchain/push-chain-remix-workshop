@@ -42,7 +42,7 @@ Think of it like this:
 > The **UEA** is the execution avatar.
 
 Your contract sees the UEA.
-Push Chain can tell you which UOA it represents.
+Push Chain lets your contract resolve which UOA a UEA represents.
 
 That’s it.
 
@@ -74,10 +74,7 @@ From your contract’s perspective:
 
 ### Why Universal Transactions
 
-Universal Transactions comes with many benefits, such as: 
-- **Cross-chain compatibility**: Send transactions from any chain (EVM or non-EVM).
-- **No bridging required**: Direct native transactions without wrapping or bridging.
-- **Simplified development**: No need for complex interoperability tooling.
+Because Universal transactions let users stay on their chain while your contract stays in one place.
 
 Learn more in <a href="https://push.org/docs/chain/build/send-universal-transaction/" target="_blank">Send Universal Transaction</a>.
 
@@ -101,10 +98,10 @@ We’ll get there soon.
 ## Quick self-check (30 seconds)
 
 Before moving on, make sure this is clear:
-	1.	UOA = who the user is on their home chain
-	2.	UEA = how that user shows up during execution on Push Chain
-	3.	Users sign on their origin chain, contracts execute on Push Chain
+- UOA = who the user is on their home chain
+- UEA = how that user shows up during execution on Push Chain
+- Users sign on their origin chain, contracts execute on Push Chain
 
 If that makes sense, you’re ready.
 
-Next up: deploying your first Solidity contract to Push Chain from Remix.
+**Next up**: deploying your first Solidity contract to Push Chain from Remix.

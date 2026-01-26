@@ -1,25 +1,38 @@
-Learn how to use the PushChain SDK to send cross-chain Universal Transactions from Sepolia to a Simple Counter contract on the Push Chain Donut Testnet.
+Up to now, everything has looked normal.
 
-## Prerequisites
+You deployed a contract.
+You called it from MetaMask.
+Nothing surprising happened.
 
-Before running the script, make sure you have the following in place:
+Now we break the one-chain assumption.
+
+In this chapter, you will call the **same contract you just deployed** from **another blockchain**, without redeploying it and without switching networks.
+
+## What's about to happen
+
+You will:
+- Create a wallet on **Ethereum Sepolia**
+- Use it to sign a transaction on **Sepolia**
+- Execute that transaction on **Push Chain**
+- Call a contract that lives **only on Push Chain**
+
+If this sounds illegal, good. That's the point.
+
+
+## Prerequisites (read this once)
+
+Before running the script:
 
 - **Funding required**: The generated wallet needs native tokens (in this case Sepolia ETH) to execute transactions.
-- **Get testnet tokens**: In case you are running this directly on Push Chain, you will need PC tokens to execute transactions. Visit <a href="https://faucet.push.org/" target="_blank">Push Chain Faucet</a> to get PC tokens for testing.
+- **No Push Chain testnet tokens needed**: You should not run this directly on Push Chain. This chapter is specifically about universal transactions.
 
-## What we will do
 
-- **Create a wallet**: Generate a random Ethereum wallet on Sepolia
-- **Convert to Universal Signer**: Transform the wallet into a Universal Signer instance
-- **Initialize Push Chain Client**: Set up the client to interact with Push Chain Donut Testnet
-- **Send Universal Transaction**: Call the `increment()` function from a smart contract deployed on Push Chain Donut Testnet from Sepolia
+## The contract you'll call (Simple Counter Contract)
 
-## Simple Counter Contract
-
-The script interacts with the Simple Counter contract deployed at:
+We’ll interact with an already deployed SimpleCounter contract on Push Chain Donut Testnet:
 <a href="https://donut.push.network/address/0x5FbDB2315678afecb367f032d93F642f64180aa3?tab=index">`0x5FbDB2315678afecb367f032d93F642f64180aa3`</a>
 
-## How it works
+### High level flow
 
 1. **Wallet Creation**: Creates a random wallet on Sepolia using `ethers.Wallet.createRandom()`
 2. **Provider Setup**: Connects to Push Chain Donut Testnet RPC endpoint
@@ -28,6 +41,10 @@ The script interacts with the Simple Counter contract deployed at:
 5. **Transaction Preparation**: Encodes the `increment()` function call using the Simple Counter ABI
 6. **Funding Wait**: The code waits for Sepolia ETH to be received at the generated wallet address (using `waitForFunding` function)
 7. **Transaction Execution**: Sends the transaction using `pushChainClient.universal.sendTransaction()` once funds are available
+
+**The important thing to note**
+- You write no cross-chain plumbing.
+- You deploy no extra contracts.
 
 ## Key Components
 
@@ -63,8 +80,12 @@ A few example transactions showcasing the same interaction from multiple chains:
 
 **Note:** This transaction showcases calling `increment()` on the Simple Counter deployed on Push Chain from any chain, natively.
 
+Same contract. Same address. Different origin chains.
+
 ## References
 
 - <a href="https://push.org/docs/chain/tutorials/basics/tutorial-simple-counter/" target="_blank">Official Simple Counter Tutorial</a>
 - <a href="https://push.org/docs/chain/build/send-universal-transaction/" target="_blank">PushChain Documentation - Send Universal Transaction</a>
 - <a href="https://www.npmjs.com/package/@pushchain/core" target="_blank">PushChain Core SDK</a>
+
+**Next up**: Who is `msg.sender`, really?

@@ -1,10 +1,14 @@
 In this chapter you will:
 
-- **Add Push Chain Donut Testnet to your wallet (MetaMask)**
-- **Deploy a simple Solidity contract from Remix to Push Chain**
-- **Confirm the deployment on the Push Chain block explorer**
+- Add **Push Chain Donut Testnet** to your wallet (MetaMask)
+- Deploy a simple Solidity contract from **Remix to Push Chain Donut Testnet**
+- Confirm the deployment on the Push Chain block explorer
 
-Learn more background concepts in the official docs: <a href="https://push.org/docs/chain/" target="_blank">Intro to Push Chain</a>.
+If you’ve deployed contracts to Ethereum before, this should feel completely familiar, even **boring**.
+
+That's intentional!
+
+> Tip: Learn more background concepts in the official docs: <a href="https://push.org/docs/chain/" target="_blank">Intro to Push Chain</a>.
 
 ## Step 1: Add Push Chain Donut Testnet to MetaMask
 
@@ -16,17 +20,16 @@ Learn more background concepts in the official docs: <a href="https://push.org/d
    - **Chain ID**: `42101`
    - **Currency Symbol**: `PC`
    - **Block Explorer URL**: `https://donut.push.network`
-   - **Faucet**: `https://faucet.push.org/`
 4. Save the network and switch MetaMask to **Push Chain Donut Testnet**.
-5. Visit the faucet to get test PC for gas: <a href="https://faucet.push.org/" target="_blank">Push Chain Faucet</a>.
+5. Get test PC for gas from the faucet: <a href="https://faucet.push.org/" target="_blank">Push Chain Faucet</a>.
 
-> Use the following network details when deploying to Push Chain Donut Testnet. See the full specs in the docs: <a href="https://push.org/docs/chain/setup/chain-config/" target="_blank">Chain Configuration</a>.
+> Full network details are available here: <a href="https://push.org/docs/chain/setup/chain-config/" target="_blank">Chain Configuration</a>.
 
 > **Note:** You do **not** need to change your Solidity code to deploy on Push Chain. Any contract that compiles for a standard EVM chain will compile and deploy the same way here.
 
 ## Step 2: Write a simple contract in Remix
 
-1. Go to <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a>.
+1. Open <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a>.
 2. Create a new file named `HelloPush.sol` in your workspace.
 3. Paste this minimal Solidity contract:
 
@@ -43,7 +46,11 @@ contract HelloPush {
 }
 ```
 
-4. In the **Solidity compiler** tab, choose compiler version **0.8.22** (or any compatible 0.8.x version) and click **Compile HelloPush.sol**.
+4. Open the **Solidity compiler** tab
+5. Select compiler version **0.8.22** (or any compatible 0.8.x version) 
+6. Click **Compile HelloPush.sol**.
+
+No Push-specific code. No special imports.
 
 ## Step 3: Deploy to Push Chain from Remix
 
@@ -59,7 +66,12 @@ contract HelloPush {
 
 You’ve now deployed a standard Solidity contract to Push Chain Donut Testnet with **no on-chain code changes**.
 
-If you prefer deploying with Hardhat or Foundry instead of Remix, follow the official guides:
+If this felt identical to deploying on Ethereum, that’s the point.
+
+## Optional: deploying without Remix
+If you prefer Hardhat or Foundry, you can deploy the same contract using standard tooling:
 
 - **Configure Hardhat**: <a href="https://push.org/docs/chain/setup/smart-contract-environment/configure-hardhat/" target="_blank">Push Chain Docs — Configure Hardhat</a>
 - **Configure Foundry**: <a href="https://push.org/docs/chain/setup/smart-contract-environment/configure-foundry/" target="_blank">Push Chain Docs — Configure Foundry</a>
+
+**Next up**: Calling your contract from another chain... natively!

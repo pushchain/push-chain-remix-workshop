@@ -63,4 +63,4 @@ Because at first, it is.
 
 Then watch that assumption quietly break.
 
-Next up: the only core concepts you actually need before deploying.
+**Next up**: the only core concepts you actually need before deploying.
