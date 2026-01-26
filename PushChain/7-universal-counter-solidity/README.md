@@ -1,8 +1,11 @@
 ## Universal Counter (Solidity)
 
-So far you’ve learned how universal execution works and how to discover an origin identity with `UEAFactory`.
+So far, you've seen:
 
-Now you’ll build a small contract that makes that idea **feel real**:
+- how universal execution works
+- how to resolve a user’s origin identity
+
+Now you’ll build a contract that makes this **imposible to ignore**.
 
 > the same `increment()` function behaves differently depending on which chain the user comes from.
 
@@ -16,7 +19,7 @@ Deploy `UniversalCounter.sol` on Push Chain and learn how to:
 
 ## What is the Universal Counter?
 
-`UniversalCounter` is a “hello world” universal app pattern:
+`UniversalCounter` is a “hello world” universal app:
 
 - One contract, deployed once (on Push Chain)
 - Users from different origin chains call the same function
