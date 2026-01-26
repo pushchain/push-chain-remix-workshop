@@ -1,6 +1,6 @@
 ---
 id: pushchain
-name: Push Chain - Deploy Once. Let Everyone In.
+name: Deploy Once. Reach Every Chain - Push Chain
 summary: Write a normal Solidity contract, deploy it once, then let users call it from any chain. No redeploys. No bridges. No nonsense.
 level: 1
 tags:
@@ -22,6 +22,6 @@ steps:
   - name: Do the Same Thing in JavaScript
     path: 5-utility-functions-js
   - name: Build a Contract That Knows Where Users Come From
-    path: 7-universal-counter-solidity
+    path: 6-universal-counter-solidity
   - name: You’re Done. Here’s Why This Matters
-    path: 8-conclusion
+    path: 7-conclusion
