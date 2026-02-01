@@ -1,7 +1,8 @@
 import { PushChain } from '@pushchain/core';
 import { ethers } from 'ethers';
 
-const RPC_PUSH = 'https://ethereum-sepolia-rpc.publicnode.com';
+// Origin-chain RPC (this example signs/funds on Ethereum Sepolia)
+const RPC_SEPOLIA = 'https://ethereum-sepolia-rpc.publicnode.com';
 
 async function main() {
   console.log('🚀 Initializing Universal Transaction Example');
@@ -45,7 +46,7 @@ async function main() {
   console.log(`📝 Created wallet: ${wallet.address}`);
 
   // 2) Set up provider and connect wallet
-  const provider = new ethers.JsonRpcProvider(RPC_PUSH);
+  const provider = new ethers.JsonRpcProvider(RPC_SEPOLIA);
   const signer = wallet.connect(provider);
 
   // 3) Convert to Universal Signer
@@ -90,7 +91,7 @@ async function main() {
 main().catch(console.error);
 
 async function waitForFunding(provider, address) {
-  console.log(`🔔 Waiting to receive Ethereum Sepolia funds at ${address} to send the Universal Transaction...`);
+  console.log(`Waiting for Sepolia ETH at ${address} (origin-chain gas)...`);
 
   const timeout = Date.now() + 10 * 60_000; // 10 minutes
   while (Date.now() < timeout) {

@@ -96,6 +96,12 @@ When the call is executed as a UEA:
   - `countEth` increments if the origin is Sepolia
   - `countSol` increments if the origin is Solana Devnet
 
+### Expected outputs (quick sanity check)
+
+- After a MetaMask call: `countPC > 0`, `countEth = 0`, `countSol = 0`
+- After a Sepolia-origin universal tx: `countEth` increases by 1
+- After a Solana-origin universal tx: `countSol` increases by 1
+
 ## Checkpoint
 
 Make sure this is clear:
@@ -110,4 +116,4 @@ If you can answer these, you understand origin-aware contracts.
 
 - For a complete tutorial with a UI, see: <a href="https://push.org/docs/chain/tutorials/basics/tutorial-universal-counter/" target="_blank">Universal Counter App</a>
 
-**Next up**: Conclusion, you just **unchained** your smart contracts from single chains 🚀
+**Next up**: Conclusion — why this matters and what to build next.

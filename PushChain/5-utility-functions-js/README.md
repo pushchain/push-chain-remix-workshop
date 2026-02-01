@@ -1,6 +1,6 @@
 In the last chapter, you resolved the real user behind `msg.sender` **inside Solidity**.
 
-Now we’ll do the same mapping **off-chain** using the <a href="https://www.npmjs.com/package/@pushchain/core">`@pushchain/core`</a> SDK.
+Now we’ll do the same mapping **off-chain** using the <a href="https://www.npmjs.com/package/@pushchain/core" target="_blank">`@pushchain/core`</a> SDK.
 
 ## What you'll do
 

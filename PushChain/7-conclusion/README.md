@@ -106,6 +106,8 @@ They’re **single-chain apps with universal reach**.
 - **Initialize Push Chain client**: <a href="https://push.org/docs/chain/build/initialize-push-chain-client/" target="_blank">Initialize Push Chain Client</a>
 - **UI Kit (for frontends)**: <a href="https://push.org/docs/chain/ui-kit/integrate-push-universal-wallet/" target="_blank">Integrate Push Universal Wallet</a>
 - **Universal Counter App (full UI tutorial)**: <a href="https://push.org/docs/chain/tutorials/basics/tutorial-universal-counter/" target="_blank">Universal Counter App</a>
+- **Community (Discord)**: <a href="https://discord.com/invite/pushchain" target="_blank">Join Push Chain Discord</a>
+- **GitHub**: <a href="https://github.com/pushchain" target="_blank">pushchain</a>
 
 ## Final takeaway
 
