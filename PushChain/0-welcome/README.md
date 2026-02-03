@@ -1,52 +1,66 @@
-You’re a Solidity developer who wants your contracts to reach users everywhere without rebuilding them for every new chain. Push Chain is a universal, EVM‑compatible Layer 1 that lets you **deploy your Solidity contract once and have it executed from EVM and non‑EVM chains**.
+## Does this look normal?
 
-## Why Push Chain matters to you
+You’re a Solidity developer.
+You know how to write contracts.
+You know how to deploy them.
 
-- **Single deployment, multi‑chain reach**: Deploy your existing Solidity contract once on Push Chain and instantly reach users from Ethereum, Base, Arbitrum, Optimism, Solana, and other supported chains—without managing separate deployments or custom bridges.
-- **No contract rewrites (EVM compatible)**: Keep your existing Solidity, ABI, and bytecode. Push Chain is 100% EVM-compatible, so you don’t need to change on‑chain code or re‑architect your contracts to deploy here.
-- **Wallet and fee abstraction for your users**: Users connect using familiar wallets like MetaMask or Phantom and pay gas in the native token of their home chain; they never need to hold a special Push Chain gas token.
+But the world changed. Siloed users on multiple chains forced you to target:
 
-## Fee abstraction and cross‑chain execution
+- More chains
+- More wallets
+- More deployments
+- More everything that nobody enjoys maintaining
 
-On Push Chain, users don’t need to hold the native Push Chain token to use your app. They:
+### The usual way this goes (and why it sucks)
 
-1. Sign a transaction on their home chain (for example, an EVM or non‑EVM chain they already use).
-2. Pay gas in that chain’s native token.
-3. Have your contract executed on Push Chain behind the scenes.
+Today, "shipping a dApp everywhere" means:
 
-Under the hood, Push Chain creates and manages a smart account for each external user and uses their locked gas funds to execute your contract on Push Chain. **From the user’s perspective, they just use their usual wallet on their usual chain.**
+- Multiple deployments (one per chain)
+- Different wallet flows and SDKs (EVM vs non‑EVM)
+- Bridges, wrappers, and custom plumbing
+- Users switching networks, juggling gas tokens, and dropping off
 
-Learn more in <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/important-concepts/#fee-abstraction-and-cross-chain-execution" target="_blank">Important Concepts → Fee Abstraction and Cross-Chain Execution</a>.
+This does not get better over time.
+It compounds.
 
-## Account types (high level)
+### Push Chain does something different
 
-Push Chain supports the standard Ethereum-style accounts you already know:
+- **Deploy once, reach many chains**: Deploy your Solidity contract once on Push Chain and let users interact from multiple origin chains.
+- **Supports both EVM and non-EVM chains**: Instantly reach to users from all supported chains, including non-EVM ones, with the same contract.
+- **No contract rewrites**: Push Chain is **100% EVM-compatible** with same Solidity, ABI, tooling.
+- **Better UX for users**: Users can keep using familiar wallets (like MetaMask or Phantom) without you rebuilding everything per chain.
 
-- **Externally Owned Accounts (EOAs)**<br />
-  Regular private‑key‑controlled addresses (for example, MetaMask wallets).
+### The KISS way
 
-- **Smart Contract Accounts (Smart Accounts)**<br />
-  On-chain contracts that hold logic (for example, multisigs, social recovery wallets).
+Push Chain uses a **universal execution model**:
 
-For this tutorial, one new account type really matters:
+- Users sign transactions from any chain (their **origin chain**)
+- Execution happens **on Push Chain**
+- The system represents origin users on Push Chain via smart accounts, so you can keep your contract logic unchanged
 
-- **Universal Executor Accounts (UEAs)**<br />
-  A smart account on Push Chain that represents a user coming from an external chain. When a user first interacts with your app from their home chain, a UEA is created for them on Push Chain and is used to execute your contract logic.
+Your contract stays simple.
+The universality lives underneath.
 
-Each UEA is linked to the user’s original wallet, called a **Universal Origin Account (UOA)**. UOAs let you attribute activity back to the user’s home chain while interacting with a single account on Push Chain.
+No per-chain deployments.
+No manual interoperability glue.
 
-Learn more in <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/important-concepts/#account-types-on-push-chain" target="_blank">Important Concepts → Account Types on Push Chain</a>.
+### What you'll do in this workshop
 
-## Universal transactions
+- Deploy a normal Solidity contract using **Remix**
+- Call it like any other **EVM chain**
+- Then call the **same contract** from another chain
+- See how a contract can tell **where a user came from**
+- Understand what UOA and UEA are, and why `msg.sender` gets interesting
 
-Universal transactions let a user **sign a transaction on their home chain while your contract runs on Push Chain**. You write and deploy your Solidity contract once, and the Push Chain SDK takes care of the cross‑chain plumbing.
+No theory dump.
+This is hands-on, deploy quick and explain later type of tutorial.
 
-When you send a universal transaction, the SDK:
+### How to approach this
 
-1. Detects the user’s origin chain.
-2. Estimates gas costs and orchestrates the necessary signatures.
-3. Routes the call so it executes on Push Chain via the user’s Universal Executor Account (UEA).
+Assume this is just another EVM chain.
 
-You focus on your application logic instead of bridging, wrapping, or managing separate deployments per chain.
+Because at first, it is.
 
-Learn more in <a href="https://pushchain.github.io/push-chain-website/pr-preview/pr-1067/docs/chain/build/send-universal-transaction/" target="_blank">PushChain Documentation - Send Universal Transaction</a>.
+Then watch that assumption quietly break.
+
+**Next up**: the only core concepts you actually need before deploying.
