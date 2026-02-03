@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.22;
+pragma solidity 0.8.30;
 
-contract Counter {
+contract SimpleCounter {
     uint256 public countPC;
     event CountIncremented(uint256 indexed countPC, address indexed caller);
 

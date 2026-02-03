@@ -35,7 +35,7 @@ That's intentional!
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.22;
+pragma solidity 0.8.30;
 
 contract HelloPush {
     uint256 public value;
@@ -47,7 +47,7 @@ contract HelloPush {
 ```
 
 4. Open the **Solidity compiler** tab
-5. Select compiler version **0.8.22** (or any compatible 0.8.x version) 
+5. Select compiler version **0.8.30** (or any compatible 0.8.x version) 
 6. Click **Compile HelloPush.sol**.
 
 No Push-specific code. No special imports.
@@ -74,4 +74,4 @@ If you prefer Hardhat or Foundry, you can deploy the same contract using standar
 - **Configure Hardhat**: <a href="https://push.org/docs/chain/setup/smart-contract-environment/configure-hardhat/" target="_blank">Push Chain Docs — Configure Hardhat</a>
 - **Configure Foundry**: <a href="https://push.org/docs/chain/setup/smart-contract-environment/configure-foundry/" target="_blank">Push Chain Docs — Configure Foundry</a>
 
-**Next up**: Calling your contract from another chain... natively!
+**Next up**: Calling your contract from another chain.

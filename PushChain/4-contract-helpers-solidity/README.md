@@ -75,7 +75,7 @@ This is done using:
 This is done using:
 - `getUEAForOrigin(UniversalAccountId)`
 
-> **Note**: The `UniversalAccountId` is a struct that contains the chain ID, namespace, and the wallet address of the origin user. To learn more, see the [Push Chain Docs - Universal Account Id](https://push.org/docs/chain/build/contract-helpers/#ueafactory--getoriginforuea).
+> **Note**: `UniversalAccountId` is a struct containing the origin chain (`chainNamespace`, `chainId`) and the origin wallet (`owner`). Learn more in <a href="https://push.org/docs/chain/build/contract-helpers/#ueafactory--getoriginforuea" target="_blank">Push Chain Docs — Universal Account Id</a>.
 
 *Example*:
 - Bob on Ethereum has wallet `0xABC...`.
@@ -146,9 +146,10 @@ Example:
 ```
 
 Meaning:
-- origin chain: Ethereum Sepolia
-- origin wallet: 0xfd6c…c1a9
-- msg.sender was a UEA
+- `chainNamespace`: `eip155` (EVM)
+- `chainId`: `11155111` (Ethereum Sepolia)
+- `owner`: `0xfd6c…c1a9` (origin wallet)
+- `isUEA`: `true` (so `msg.sender` was an executor account)
 
 
 > Note: If you call this directly from MetaMask, `isUEA` will usually be `false`.
