@@ -29,7 +29,7 @@ That's intentional!
 
 ## Step 2: Write a simple contract in Remix
 
-1. Open <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a>.
+1. Make sure you're in the Remix IDE (if you don't have it open already, open <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a>).
 2. Create a new file named `HelloPush.sol` in your workspace.
 3. Paste this minimal Solidity contract:
 
