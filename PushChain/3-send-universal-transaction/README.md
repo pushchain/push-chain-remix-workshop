@@ -23,6 +23,7 @@ If this sounds illegal, good. That's the point.
 
 Before running the script:
 
+- Switch to the **Push Chain** script configuration.
 - **Funding required**: The generated wallet needs native tokens (in this case Sepolia ETH) to execute transactions.
 - **No Push Chain testnet tokens needed**: You should not run this directly on Push Chain. This chapter is specifically about universal transactions.
 
@@ -75,8 +76,8 @@ const txParams = {
 
 A few example transactions showcasing the same interaction from multiple chains:
 
-- <a href="https://donut.push.network/tx/0xa3478c4d4034355bd3828393256e5d80806a0c45d53c67b64f0f32305e0b54de">Universal Transaction from Sepolia Ethereum</a>
-- <a href="https://donut.push.network/tx/0xd3333e13729872f326f11a15020b90eba75ccbb917ff1096cf444881acb124f8">Universal Transaction from Solana Devnet</a>
+- <a href="https://donut.push.network/tx/0xa3478c4d4034355bd3828393256e5d80806a0c45d53c67b64f0f32305e0b54de" target="_blank">Universal Transaction from Sepolia Ethereum</a>
+- <a href="https://donut.push.network/tx/0xd3333e13729872f326f11a15020b90eba75ccbb917ff1096cf444881acb124f8" target="_blank">Universal Transaction from Solana Devnet</a>
 
 **Note:** This transaction showcases calling `increment()` on the Simple Counter deployed on Push Chain from any chain, natively.
 

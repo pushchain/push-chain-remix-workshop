@@ -125,17 +125,16 @@ No state changes. No risk.
 ```
 
 ## How to try this in Remix
-
-1. Open <a href="https://remix.ethereum.org" target="_blank">Remix IDE</a>.
-2. Create `UEAFactoryDemo.sol` and paste the contract from this folder.
-3. Switch *(MetaMask)* to **Push Chain Donut Testnet**.
-4. In Remix → **Deploy & Run**, select **Injected Provider – MetaMask**.
-5. Deploy `UEAFactoryDemo`.
-6. Under **Deployed Contracts** call:
+ 
+ 1. Confirm `UEAFactoryDemo.sol` is open in the editor.
+ 2. Switch *(MetaMask)* to **Push Chain Donut Testnet**.
+ 3. In Remix → **Deploy & Run**, select **Injected Provider – MetaMask**.
+ 4. Deploy `UEAFactoryDemo`.
+ 5. Under **Deployed Contracts** call:
    - `discoverOrigin()`
    - (optional) copy the returned `UniversalAccountId` and call `discoverUEAForOrigin(...)`
-
-### What you should see
+ 
+ ### What you should see
 
   - an origin identity `(chainNamespace, chainId, owner)` and
   - a boolean `isUEA`
